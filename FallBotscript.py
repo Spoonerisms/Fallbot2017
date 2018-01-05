@@ -14,15 +14,15 @@ from datetime import datetime, timedelta, date
 Commented out since I don't have this info
 """
 
-# from FallBotTwitterauth import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
-# auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-# auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+from FallBotTwitterauth import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET
+auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
 
 """
 setting this as the constant for TAPI
 """
-# TAPI = tweepy.API(auth)
+TAPI = tweepy.API(auth)
 
 ### 
 PHRASE_BOOK = [
@@ -48,7 +48,7 @@ def ran_today():
                 return True
             return False
     except IOError:
-        print "File not found so running for first time."
+        print("File not found so running for first time.")
         return False
 
 ### logging if ran
@@ -90,7 +90,7 @@ def randomize_day():
 
 def post_to_twitter():
     p = random.choice(PHRASE_BOOK) % get_time_till_fall()
-    print p
+    print(p)
     TAPI.update_status(p)
 
 def run():
